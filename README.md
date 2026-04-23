@@ -1,25 +1,20 @@
-# 🚀 Kubernetes Custom Metrics Autoscaling
+# Kubernetes Custom Metrics Autoscaling
 
-A production-style Kubernetes project demonstrating **advanced autoscaling using Prometheus custom metrics**, including:
+A production-style Kubernetes project demonstrating advanced autoscaling using Prometheus
+custom metrics, including:
 
-* 📈 Request-based scaling (traffic)
-* ⏱️ Latency-based scaling (P95)
-* ⚙️ Controlled scaling behavior (scale up/down policies)
-* 🔍 Full observability using Prometheus & Grafana
-* 🧪 Load testing with k6
+* Request-based scaling (traffic)
+* Latency-based scaling (P95)
+* Controlled scaling behavior (scale up/down policies)
+* Full observability using Prometheus & Grafana
+* Load testing with k6
 
----
+# Architecture
 
-# 🧠 Architecture
-
-```text
 User → Node.js App → Service → ServiceMonitor → Prometheus
       → Prometheus Adapter → Custom Metrics API → HPA → Scaling Pods
-```
 
----
-
-# ⚙️ Tech Stack
+# Tech Stack
 
 * Node.js (custom metrics app)
 * Docker
@@ -29,16 +24,15 @@ User → Node.js App → Service → ServiceMonitor → Prometheus
 * Grafana
 * k6 (load testing)
 
----
 
-# 📊 Key Features
+# Key Features
 
-## 🔹 Custom Metrics
+## Custom Metrics
 
 * `http_requests_total` → request rate
 * `http_request_duration_seconds` → latency histogram (P95)
 
-## 🔹 Autoscaling Strategy
+## Autoscaling Strategy
 
 * Multi-metric HPA:
 
@@ -49,15 +43,14 @@ User → Node.js App → Service → ServiceMonitor → Prometheus
   * Gradual scale up
   * Gradual scale down
 
-## 🔹 Observability
+## Observability
 
 * Prometheus scrapes metrics via ServiceMonitor
 * Real-time metrics visualization
 * Latency and traffic monitoring
 
----
 
-# 📸 Demo (Screenshots)
+# Demo (Screenshots)
 
 ## 1. HPA Scaling
 
@@ -79,9 +72,8 @@ rate(http_requests_total[1m])
 histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))
 ```
 
----
 
-# 🧪 Load Testing
+# Load Testing
 
 Load is generated using k6:
 
@@ -94,17 +86,13 @@ Example output:
 * ~100 requests/sec
 * Real-time latency changes
 
----
-
-# 🚀 How to Run
+# How to Run
 
 ## 1. Start Kubernetes
 
 ```bash
 minikube start
 ```
-
----
 
 ## 2. Deploy Monitoring Stack (Prometheus)
 
@@ -120,15 +108,11 @@ helm install monitoring prometheus-community/kube-prometheus-stack
 kubectl apply -f k8s/app/
 ```
 
----
-
 ## 4. Deploy ServiceMonitor
 
 ```bash
 kubectl apply -f k8s/monitoring/
 ```
-
----
 
 ## 5. Install Prometheus Adapter
 
@@ -137,23 +121,17 @@ helm install prometheus-adapter prometheus-community/prometheus-adapter \
   -f helm/adapter-values.yaml
 ```
 
----
-
 ## 6. Deploy HPA
 
 ```bash
 kubectl apply -f k8s/autoscaling/hpa.yaml
 ```
 
----
-
 ## 7. Run Load Test
 
 ```bash
 k6 run load-test/k6.js
 ```
-
----
 
 ## 8. Watch Scaling
 
@@ -162,9 +140,7 @@ kubectl get hpa -w
 kubectl get pods -w
 ```
 
----
-
-# ⚙️ HPA Configuration (Core Idea)
+# HPA Configuration (Core Idea)
 
 ```yaml
 Latency Target:   20ms
@@ -177,18 +153,14 @@ Scaling triggers when:
 * latency increases OR
 * request rate increases
 
----
-
-# 📈 Results
+# Results
 
 * System scales automatically under load
 * Latency decreases after scaling
 * Pods scale down when load stops
 * Stable and controlled behavior
 
----
-
-# 🧠 What I Learned
+# What I Learned
 
 * How Prometheus custom metrics integrate with Kubernetes
 * Difference between CPU-based and metric-based autoscaling
@@ -197,15 +169,11 @@ Scaling triggers when:
 * Importance of stabilization windows and scaling policies
 * Real-world autoscaling trade-offs (performance vs cost)
 
----
-
-# 💡 Key Insight
+# Key Insight
 
 > Autoscaling should be based on **user experience (latency)**, not just resource usage.
 
----
-
-# 👨‍💻 Author
+# Author
 
 Ali Yasser
-DevOps & Cloud Enthusiast
+DevOps Engineer
