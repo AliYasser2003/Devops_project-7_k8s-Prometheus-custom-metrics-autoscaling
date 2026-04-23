@@ -8,12 +8,10 @@ custom metrics, including:
 * Full observability using Prometheus & Grafana
 * Load testing with k6
 
-This project builds upon a prior monitoring system [ project 5 ] and evolves it into a self-regulating architecture that automatically scales based on real user experience and traffic load.
+###  **This project builds upon a prior monitoring system [ project 5 ] and evolves it into a self-regulating architecture that automatically scales based on real user experience and traffic load.**
 
 # Architecture
-
-User → Node.js App → Service → ServiceMonitor → Prometheus
-      → Prometheus Adapter → Custom Metrics API → HPA → Scaling Pods
+![Architecture](Project-7_Screenshots/5_Architecture.png)
 
 # Tech Stack
 
@@ -53,29 +51,22 @@ User → Node.js App → Service → ServiceMonitor → Prometheus
 # Demo (Screenshots)
 
 ### 1. HPA Scaling
-
 Shows gradual scaling:
-```
-2 → 3 → 4 → 5 pods
-```
+```2 → 3 → 4 → 5 pods```
+![HPA Scaling](Project-7_Screenshots/1_HPA-Scaling.png)
 
 ### 2. Request Rate (Prometheus)
-```
-rate(http_requests_total[1m])
-```
+```rate(http_requests_total[1m])```
+![Request Rate (Prometheus)](Project-7_Screenshots/2_Request-Rate.png)
 
 ### 3. Latency P95
-```
-histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))
-```
-
+```histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))```
+![Latency P95](Project-7_Screenshots/3_Latency-P95.png)
 
 # Load Testing
-
 Load is generated using k6:
-```bash
-k6 run load-test/k6.js
-```
+```bash k6 run load-test/k6.js```
+![Load Testing](Project-7_Screenshots/4_Load-Testing_k6.png)
 
 Example output:
 * ~100 requests/sec
