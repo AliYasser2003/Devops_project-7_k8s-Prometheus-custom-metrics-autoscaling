@@ -1,0 +1,31 @@
+prometheus:
+  url: http://monitoring-kube-prometheus-prometheus
+  port: 9090
+
+rules:
+  default: false
+
+  custom:
+    - seriesQuery: '{__name__=~"http_requests_total"}'
+      resources:
+        overrides:
+          namespace:
+            resource: "namespace"
+          pod:
+            resource: "pod"
+      name:
+        matches: "http_requests_total"
+        as: "http_requests"
+      metricsQuery: sum(rate(http_requests_total[1m])) by (pod)
+
+    - seriesQuery: 'http_request_duration_seconds_bucket'
+      resources:
+        overrides:
+          namespace:
+            resource: namespace
+          pod:
+            resource: pod
+      name:
+        matches: "http_request_duration_seconds_bucket"
+        as: "http_latency_p95"
+      metricsQuery: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le, namespace, pod))
