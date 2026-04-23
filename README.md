@@ -8,7 +8,7 @@ custom metrics, including:
 * Full observability using Prometheus & Grafana
 * Load testing with k6
 
-###  **This project builds upon a prior monitoring system [ project 5 ] and evolves it into a self-regulating architecture that automatically scales based on real user experience and traffic load.**
+### - **This project builds upon a prior monitoring system [ project 5 ] and evolves it into a self-regulating architecture that automatically scales based on real user experience and traffic load.**
 
 # Architecture
 ![Architecture](Project-7_Screenshots/5_Architecture.png)
