@@ -51,8 +51,8 @@ custom metrics, including:
 # Demo (Screenshots)
 
 ### 1. HPA Scaling Shows:
-Scaling Pattern: `2 → 3 → 4 → 5 pods`
-Latency Target (P95): `20 ms`
+Scaling Pattern: `2 → 3 → 4 → 5 pods` ,
+Latency Target (P95): `20 ms` ,
 Request Rate Target: `40 requests/sec per pod` 
 ![HPA Scaling](Project-7_Screenshots/1_HPA-Scaling.png)
 
