@@ -15,7 +15,6 @@ custom metrics, including:
 ![Architecture](Project-7_Screenshots/5_Architecture.png)
 
 # Tech Stack
-
 * Node.js
 * Docker
 * Kubernetes
@@ -26,14 +25,11 @@ custom metrics, including:
 
 
 # Key Features
-
 ### Custom Metrics
-
 * `http_requests_total` --> request rate
 * `http_request_duration_seconds` --> latency histogram (P95)
 
 ### Autoscaling Strategy
-
 1) Multi-metric HPA:
   * Requests per pod
   * Latency (P95)
@@ -43,14 +39,12 @@ custom metrics, including:
   * Gradual scale down
 
 ### Observability
-
 * Prometheus scrapes metrics via ServiceMonitor
 * Real-time metrics visualization
 * Latency and traffic monitoring
 
 
 # Demo (Screenshots)
-
 ### 1. HPA Scaling Shows:
 - Scaling Pattern: `2 → 3 → 4 → 5 pods`
 - Latency Target (P95): `20 ms`
@@ -65,7 +59,7 @@ custom metrics, including:
 ```histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))```
 ![Latency P95](Project-7_Screenshots/3_Latency-P95.png)
 
-# Load Testing
+### 4. Load Testing
 Load is generated using k6:
 ```bash k6 run load-test/k6.js```
 ![Load Testing](Project-7_Screenshots/4_Load-Testing_k6.png)
@@ -75,7 +69,6 @@ Example output:
 
 
 # How to Run
-
 ### 1. Start Kubernetes
 ```bash
 minikube start
@@ -85,8 +78,6 @@ minikube start
 ```bash
 helm install monitoring prometheus-community/kube-prometheus-stack
 ```
-
----
 
 ### 3. Deploy Application
 ```bash
@@ -120,6 +111,7 @@ kubectl get hpa -w
 kubectl get pods -w
 ```
 
+
 # HPA Configuration (Core Idea)
 ```yaml
 Latency Target:   20ms
@@ -150,5 +142,4 @@ Scaling triggers when:
 * Autoscaling should be based on user experience (latency), not just resource usage.
 
 # Author
-Ali Yasser,
-DevOps Engineer
+Ali Yasser
