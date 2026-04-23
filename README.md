@@ -50,9 +50,10 @@ custom metrics, including:
 
 # Demo (Screenshots)
 
-### 1. HPA Scaling
-Shows gradual scaling:
-```2 → 3 → 4 → 5 pods```
+### 1. HPA Scaling Shows:
+Scaling Pattern: `2 → 3 → 4 → 5 pods`
+Latency Target (P95): `20 ms`
+Request Rate Target: `40 requests/sec per pod` 
 ![HPA Scaling](Project-7_Screenshots/1_HPA-Scaling.png)
 
 ### 2. Request Rate (Prometheus)
@@ -148,5 +149,5 @@ Scaling triggers when:
 * Autoscaling should be based on user experience (latency), not just resource usage.
 
 # Author
-Ali Yasser
+Ali Yasser,
 DevOps Engineer
