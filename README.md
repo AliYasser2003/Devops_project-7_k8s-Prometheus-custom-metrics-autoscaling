@@ -8,6 +8,7 @@ custom metrics, including:
 * Full observability using Prometheus & Grafana
 * Load testing with k6
 
+# Project Evolution
 ### **This project builds upon a prior monitoring system [ project 5 ] and evolves it into a self-regulating architecture that automatically scales based on real user experience and traffic load.**
 
 # Architecture
@@ -51,9 +52,9 @@ custom metrics, including:
 # Demo (Screenshots)
 
 ### 1. HPA Scaling Shows:
-Scaling Pattern: `2 → 3 → 4 → 5 pods` ,
-Latency Target (P95): `20 ms` ,
-Request Rate Target: `40 requests/sec per pod` 
+- Scaling Pattern: `2 → 3 → 4 → 5 pods`
+- Latency Target (P95): `20 ms`
+- Request Rate Target: `40 requests/sec per pod` 
 ![HPA Scaling](Project-7_Screenshots/1_HPA-Scaling.png)
 
 ### 2. Request Rate (Prometheus)
@@ -128,19 +129,19 @@ Replicas:         2 → 5
 
 Scaling triggers when:
 * latency increases OR
-* request rate increases
+* request rate exceeds the defined threshold
 
 
 # Results
 * System scales automatically under load
 * Latency decreases after scaling
-* Pods scale down when load stops
-* Stable and controlled behavior
+* Pods scale down when traffic decreases
+* Stable and controlled scaling behavior
 
 # What I Learned
 * How Prometheus custom metrics integrate with Kubernetes
 * Difference between CPU-based and metric-based autoscaling
-* How to design latency-based scaling (P95)
+* Designing latency-based scaling (P95)
 * How HPA makes scaling decisions
 * Importance of stabilization windows and scaling policies
 * Real-world autoscaling trade-offs (performance vs cost)
